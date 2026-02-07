@@ -23,8 +23,8 @@ public class PaperSheet : MonoBehaviour
     [SerializeField] private float maxStretch = 1.2f;   // Limite d'étirement (1.0 = pas d'étirement)
     
     [Header("Corners")]
-    private Transform[] cornerTargets;
-    private int[] cornerIndices;
+    private Transform[] controlPoints;
+    private int[] controlPointsIndices;
     
     // Structure pour optimiser la recherche de voisins
     private class VertexConnection
@@ -52,8 +52,8 @@ public class PaperSheet : MonoBehaviour
         
         System.Array.Copy(originalVertices, vertices, originalVertices.Length);
         
-        cornerIndices = FindCornerVertices();
-        CreateCornerTargets();
+        controlPointsIndices = FindControlPointsIndices();
+        CreateControlTargets();
         BuildConnections();
     }
     
@@ -169,7 +169,7 @@ public class PaperSheet : MonoBehaviour
         }
         
         // Fixer les coins
-        FixCorners();
+        FixControlPoints();
         
         // Appliquer au mesh
         mesh.vertices = vertices;
@@ -181,7 +181,7 @@ public class PaperSheet : MonoBehaviour
     {
         for (int i = 0; i < vertices.Length; i++)
         {
-            if (IsCorner(i)) continue;
+            if (IsControlPoint(i)) continue;
             
             // Gravité
             velocities[i] += gravity * dt;
@@ -199,7 +199,7 @@ public class PaperSheet : MonoBehaviour
     {
         for (int i = 0; i < vertices.Length; i++)
         {
-            if (IsCorner(i)) continue;
+            if (IsControlPoint(i)) continue;
             
             Vector3 correction = Vector3.zero;
             int correctionCount = 0;
@@ -270,12 +270,12 @@ public class PaperSheet : MonoBehaviour
         }
     }
     
-    void FixCorners()
+    void FixControlPoints()
     {
-        for (int i = 0; i < cornerIndices.Length; i++)
+        for (int i = 0; i < controlPointsIndices.Length; i++)
         {
-            int idx = cornerIndices[i];
-            Vector3 targetPos = transform.InverseTransformPoint(cornerTargets[i].position);
+            int idx = controlPointsIndices[i];
+            Vector3 targetPos = transform.InverseTransformPoint(controlPoints[i].position);
             
             // Calculer la vélocité implicite pour un mouvement smooth
             velocities[idx] = (targetPos - vertices[idx]) / Time.fixedDeltaTime;
@@ -283,26 +283,53 @@ public class PaperSheet : MonoBehaviour
         }
     }
     
-    bool IsCorner(int index)
+    bool IsControlPoint(int index)
     {
-        foreach (int corner in cornerIndices)
-            if (corner == index) return true;
+        foreach (int controlPoint in controlPointsIndices)
+            if (controlPoint == index) return true;
         return false;
     }
     
-    void CreateCornerTargets()
+    void CreateControlTargets()
     {
-        if (cornerTargets == null || cornerTargets.Length == 0)
+        if (controlPoints == null || controlPoints.Length == 0)
         {
-            cornerTargets = new Transform[4];
-            for (int i = 0; i < 4; i++)
+            controlPoints = new Transform[5];
+            for (int i = 0; i < 5; i++)
             {
-                GameObject go = new GameObject($"Corner_{i}");
+                GameObject go = new GameObject($"ControlTarget_{i}");
                 go.transform.parent = transform;
-                go.transform.localPosition = originalVertices[cornerIndices[i]];
-                cornerTargets[i] = go.transform;
+                go.transform.localPosition = originalVertices[controlPointsIndices[i]];
+                controlPoints[i] = go.transform;
             }
         }
+    }
+    
+    int FindCenterVertex()
+    {
+        // Calculer le centre du mesh
+        Vector3 center = Vector3.zero;
+        foreach (Vector3 v in originalVertices)
+        {
+            center += v;
+        }
+        center /= originalVertices.Length;
+        
+        // Trouver le vertex le plus proche du centre
+        int closestIndex = 0;
+        float closestDistance = float.MaxValue;
+        
+        for (int i = 0; i < originalVertices.Length; i++)
+        {
+            float distance = Vector3.Distance(originalVertices[i], center);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        }
+        
+        return closestIndex;
     }
     
     int[] FindCornerVertices()
@@ -337,6 +364,23 @@ public class PaperSheet : MonoBehaviour
         
         return corners;
     }
+
+    int[] FindControlPointsIndices()
+    {
+        int[] indices = new int[5];
+        
+        int[] corners = FindCornerVertices();
+        int centerIndex = FindCenterVertex();
+
+        for (int i = 0; i < 4; i++)
+        {
+            indices[i] = corners[i];
+        }
+        
+        indices[4] = centerIndex;
+        
+        return indices;
+    }
     
     // Gizmos pour débugger
     void OnDrawGizmos()
@@ -344,10 +388,10 @@ public class PaperSheet : MonoBehaviour
         if (vertices == null || !Application.isPlaying) return;
         
         Gizmos.color = Color.yellow;
-        for (int i = 0; i < cornerIndices.Length; i++)
+        for (int i = 0; i < controlPointsIndices.Length; i++)
         {
-            Vector3 worldPos = transform.TransformPoint(vertices[cornerIndices[i]]);
-            Gizmos.DrawWireSphere(worldPos, 0.02f);
+            Vector3 worldPos = transform.TransformPoint(vertices[controlPointsIndices[i]]);
+            Gizmos.DrawWireSphere(worldPos, 0.2f);
         }
     }
 }
