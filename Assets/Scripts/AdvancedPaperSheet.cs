@@ -296,13 +296,15 @@ public class AdvancedPaperSheet : MonoBehaviour
 
         for (int j = 0; j < controlPoints.Length; j++)
         {
-            Vector3 position = controlPoints[j].position;
+            Vector3 localPosition = transform.InverseTransformPoint(controlPoints[j].position);
+
             float closestDistance = Mathf.Infinity;
             int closestIndex = 0;
 
             for (int i = 0; i < originalVertices.Length; i++)
             {
-                float distance = Vector3.Distance(originalVertices[i], position);
+                // Maintenant les deux sont en espace local
+                float distance = Vector3.Distance(originalVertices[i], localPosition);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
