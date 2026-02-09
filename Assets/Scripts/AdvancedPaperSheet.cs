@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(Mesh))]
 public class AdvancedPaperSheet : MonoBehaviour
 {
     [Header("Mesh")]
@@ -20,6 +22,7 @@ public class AdvancedPaperSheet : MonoBehaviour
 
     [Header("Constraints")]
     [SerializeField] private int solverIterations = 3;  // Plus = plus stable mais plus lent
+    [Range(1, 2)]
     [SerializeField] private float maxStretch = 1.2f;   // Limite d'étirement (1.0 = pas d'étirement)
 
     [Header("Corners")]
