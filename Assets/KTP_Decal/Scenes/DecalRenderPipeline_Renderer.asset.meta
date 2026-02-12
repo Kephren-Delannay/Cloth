@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1872ae4eac0491b469f781d9e5bbb447
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 251475
+  packageName: Korean Traditional Pattern Decal
+  packageVersion: 1.0
+  assetPath: Assets/KTP_Decal/Scenes/DecalRenderPipeline_Renderer.asset
+  uploadId: 579494

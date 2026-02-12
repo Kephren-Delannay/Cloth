@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 708ee96c3c16ce547bbbd6d5e7fc5e1e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 251475
+  packageName: Korean Traditional Pattern Decal
+  packageVersion: 1.0
+  assetPath: Assets/KTP_Decal/Shader/Decal.shadergraph
+  uploadId: 579494
