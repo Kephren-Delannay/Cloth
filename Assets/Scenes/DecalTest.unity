@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3712137305197131800, guid: 548336a443dadff4382722ac3d6f82f8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e880b4f5dab92845b082e61d648f9c5, type: 2}
     - target: {fileID: 7110872708419377592, guid: 548336a443dadff4382722ac3d6f82f8, type: 3}
       propertyPath: m_Name
       value: RectSheet
@@ -1471,7 +1475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2115585124
 Transform:
   m_ObjectHideFlags: 0
