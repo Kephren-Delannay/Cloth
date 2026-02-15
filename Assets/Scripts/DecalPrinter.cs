@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Printer : MonoBehaviour
+public class DecalPrinter : MonoBehaviour
 {
     [Header("Configuration")]
     [SerializeField] private DecalProjector mDecalProjector;
