@@ -60,6 +60,6 @@ Material:
     - _DrawOrder: 0
     m_Colors:
     - _Base_Color: {r: 0.8867924, g: 0.03764683, b: 0.03764683, a: 1}
-    - _Indices: {r: 0, g: 1, b: 2, a: 0}
+    - _Indices: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
