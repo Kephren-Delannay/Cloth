@@ -1508,10 +1508,10 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_RenderingLayerMask:
     serializedVersion: 0
-    m_Bits: 4294967295
+    m_Bits: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 7.1, y: 12.35, z: 5}
+  m_Size: {x: 10, y: 15, z: 5}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Printer
   mDecalProjector: {fileID: 2115585125}
   mArrayPropertyName: _Indices
-  mIndicesToPrint: {x: 0, y: 0, z: 0}
+  mIndicesToPrint: {x: 4, y: 6, z: 8}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

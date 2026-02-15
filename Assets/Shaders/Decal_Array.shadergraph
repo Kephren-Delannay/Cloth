@@ -533,7 +533,7 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "m_SerializedTexture": "{\"textureArray\":{\"fileID\":18700000,\"guid\":\"86709747f5b18334c92065e0edddf5ef\",\"type\":2}}",
+        "m_SerializedTexture": "{\"textureArray\":{\"fileID\":18700000,\"guid\":\"51a10ca093e3d7345836809f571ad8ea\",\"type\":2}}",
         "m_Guid": ""
     },
     "m_Modifiable": true
@@ -2021,9 +2021,9 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 2.0,
+        "x": 8.0,
+        "y": 4.0,
+        "z": 1.0,
         "w": 0.0
     }
 }
